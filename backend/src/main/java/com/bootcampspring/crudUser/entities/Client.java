@@ -3,32 +3,44 @@ package com.bootcampspring.crudUser.entities;
 import java.io.Serializable;
 import java.time.Instant;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tb_client")
 public class Client implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String cpf;
 	private Double income;
-//	private Instant birthDate;
+
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant birthDate;
 	private Integer children;
-	
 
 	public Client() {
 		super();
 	}
 
-	public Client(Long id, String name, String cpf, Double income, Integer children) {
+	public Client(String name, String cpf, Double income, Instant birthDate, Integer children) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.income = income;
-//		this.birthDate = birthDate;
+		this.birthDate = birthDate;
 		this.children = children;
 	}
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -61,13 +73,13 @@ public class Client implements Serializable {
 		this.income = income;
 	}
 
-//	public Instant getBirthDate() {
-//		return birthDate;
-//	}
-//
-//	public void setBirthDate(Instant birthDate) {
-//		this.birthDate = birthDate;
-//	}
+	public Instant getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Instant birthDate) {
+		this.birthDate = birthDate;
+	}
 
 	public Integer getChildren() {
 		return children;
@@ -101,7 +113,5 @@ public class Client implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
 
 }
