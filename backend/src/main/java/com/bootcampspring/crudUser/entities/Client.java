@@ -31,8 +31,8 @@ public class Client implements Serializable {
 		super();
 	}
 
-	public Client(String name, String cpf, Double income, Instant birthDate, Integer children) {
-		super();
+	public Client(Long id, String name, String cpf, Double income, Instant birthDate, Integer children) {
+		this.id = id;
 		this.name = name;
 		this.cpf = cpf;
 		this.income = income;
@@ -40,7 +40,6 @@ public class Client implements Serializable {
 		this.children = children;
 	}
 
-	
 	public Long getId() {
 		return id;
 	}
