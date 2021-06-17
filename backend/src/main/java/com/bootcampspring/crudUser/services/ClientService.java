@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.bootcampspring.crudUser.entities.Client;
 import com.bootcampspring.crudUser.entities.dto.ClientDTO;
 import com.bootcampspring.crudUser.repositories.ClientRepository;
+import com.bootcampspring.crudUser.services.exceptions.EntityNotFoundException;
 
 @Service
 public class ClientService {
@@ -27,10 +28,8 @@ public class ClientService {
 	@Transactional(readOnly = true)
 	public ClientDTO findById(Long id) {
 		Optional<Client> obj = repository.findById(id);
-		Client entity = obj.get();
+		Client entity = obj.orElseThrow(() -> new EntityNotFoundException("Entidade não encontrada"));
 		return new ClientDTO(entity);
 	}
-
-
 
 }
